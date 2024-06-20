@@ -1,7 +1,7 @@
 export default function Signup() {
 
     const handleSubmit = (e) => {
-        event.preventDefault();
+        e.preventDefault();
 
         // this is a built-in js function used with forms 
         const fd = new FormData(e.target);
@@ -10,6 +10,9 @@ export default function Signup() {
         const data = Object.fromEntries(fd.entries());
         data.acquisition = acquisitionChannel;
         console.log(data);
+
+        // here we imperatively reset the form 
+        e.target.reset();
     }
     return (
       <form onSubmit={handleSubmit}>
@@ -26,7 +29,7 @@ export default function Signup() {
             <label htmlFor="password">Password</label>
             <input id="password" type="password" name="password" />
           </div>
-  
+
           <div className="control">
             <label htmlFor="confirm-password">Confirm Password</label>
             <input
@@ -98,6 +101,7 @@ export default function Signup() {
         </div>
   
         <p className="form-actions">
+          {/* tghis button resets the whole form  */}
           <button type="reset" className="button button-flat">
             Reset
           </button>
